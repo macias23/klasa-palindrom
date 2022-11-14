@@ -6,15 +6,14 @@ public class Palindrom {
     public static int liczZnajdzNajdluzszyPalindrom;
     public static int liczAnalizujSubslowo;
     public static int liczCzyPalindrom;
+    private String najdluzszyPalindrom;
+    private String tekst;
+    private String surowyTekst;
     Palindrom(String tresc){
         tekst=tresc;
         surowyTekst=utworzSurowyTekst();
         najdluzszyPalindrom=znajdzNajdluzszyPalindrom(surowyTekst);
     }
-    private String najdluzszyPalindrom;
-    private String tekst;
-    private String surowyTekst;
-
     public String getTekst() {
         return tekst;
     }
@@ -40,6 +39,7 @@ public class Palindrom {
 
 
     }
+    @Override
     public boolean equals(Object obiekt){
         if (obiekt.getClass()!=Palindrom.class) return false;
         if (obiekt instanceof Palindrom) {
@@ -50,8 +50,11 @@ public class Palindrom {
         if (obiekt==null) return false;
         return true;
     }
+    @Override
     public int hashCode(){
-        return tekst.length()*surowyTekst.length()*najdluzszyPalindrom.length();
+        int result=7;
+        result=31*result*tekst.hashCode()+surowyTekst.hashCode();
+        return result;
     }
     /*public int hashCode(){
         return test.hashCode();
