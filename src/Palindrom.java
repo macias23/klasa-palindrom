@@ -1,3 +1,4 @@
+import javax.naming.event.ObjectChangeListener;
 import java.lang.Character;
 import java.util.Hashtable;
 
@@ -39,10 +40,13 @@ public class Palindrom {
 
 
     }
-    public boolean equals(Palindrom obiekt){
+    public boolean equals(Object obiekt){
         if (obiekt.getClass()!=Palindrom.class) return false;
-        if (!tekst.equals(obiekt.getTekst())) return false;
-        if (!surowyTekst.equals((obiekt.getSurowyTekst()))) return false;
+        if (obiekt instanceof Palindrom) {
+            Palindrom ob = (Palindrom) obiekt;
+            if (!tekst.equals(ob.getTekst())) return false;
+            if (!surowyTekst.equals((ob.getSurowyTekst()))) return false;
+        }
         if (obiekt==null) return false;
         return true;
     }
